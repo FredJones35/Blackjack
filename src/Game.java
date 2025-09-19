@@ -4,6 +4,7 @@ import java.util.Arrays;
 public class Game {
     Player player;
     Dealer dealer;
+    int round_count;
     ArrayList<String> deck = new ArrayList<>(Arrays.asList(
             "2-C", "3-C", "4-C", "5-C", "6-C", "7-C", "8-C", "9-C", "10-C", "J-C", "Q-C", "K-C", "A-C",
             "2-D", "3-D", "4-D", "5-D", "6-D", "7-D", "8-D", "9-D", "10-D", "J-D", "Q-D", "K-D", "A-D",
@@ -13,6 +14,7 @@ public class Game {
     Game(){
         player = new Player();
         dealer = new Dealer();
+        round_count = 0;
     }
     void player_push(){
         player.money += player.bet;
@@ -44,8 +46,14 @@ public class Game {
             player_push();
         }
     }
+    void check_shuffle(){
+        if (round_count%3 == 0){
+            DeckShuffler.suffle_deck(deck);
+        }
+    }
     void game_loop(){
         while(true){
+            check_shuffle();
             player.bet();
             dealer.deal_cards(deck,player);
             player.set_turn();
@@ -59,6 +67,7 @@ public class Game {
             }
             check_dealer_hand();
             compare_hands();
+            round_count++;
         }
     }
 }
