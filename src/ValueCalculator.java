@@ -7,8 +7,10 @@ public class ValueCalculator {
             char card_val = card.charAt(0);
             if (card_val == 'J' || card_val == 'K' || card_val == 'Q') {
                 sum += 10;
-            } else if (card_val != 'A') {
+            } else if (card_val != 'A' && card_val != '1') {
                 sum += Character.getNumericValue(card_val);
+            }else if(card_val == '1'){
+                sum += 10;
             }else {
                 if (sum <= 10){
                     sum += 11;
