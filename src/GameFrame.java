@@ -7,16 +7,22 @@
  *
  * @author ernkr
  */
+import static java.lang.Integer.parseInt;
 import javax.swing.ImageIcon;
 public class GameFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GameFrame.class.getName());
+    private GameEngine gameEngine = new GameEngine();
+    private int playerBet = 0;
 
     /**
      * Creates new form GameFrame
      */
     public GameFrame() {
         initComponents();
+    }
+    public int getPlayerBet(){
+        return playerBet;
     }
 
     /**
@@ -49,6 +55,7 @@ public class GameFrame extends javax.swing.JFrame {
         decrease_button = new javax.swing.JButton();
         bet_label = new javax.swing.JLabel();
         bet_button = new javax.swing.JButton();
+        dollar_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Blackjack");
@@ -140,13 +147,30 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         increase_button.setText("+");
+        increase_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                increase_buttonActionPerformed(evt);
+            }
+        });
 
         decrease_button.setText("-");
+        decrease_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrease_buttonActionPerformed(evt);
+            }
+        });
 
-        bet_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bet_label.setText("Bet : 0");
+        bet_label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        bet_label.setText("0");
 
         bet_button.setText("Bet");
+        bet_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bet_buttonActionPerformed(evt);
+            }
+        });
+
+        dollar_label.setText("$");
 
         javax.swing.GroupLayout bet_panelLayout = new javax.swing.GroupLayout(bet_panel);
         bet_panel.setLayout(bet_panelLayout);
@@ -157,8 +181,12 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(bet_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(increase_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(decrease_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bet_label, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(bet_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bet_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(bet_panelLayout.createSequentialGroup()
+                        .addComponent(bet_label, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dollar_label)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         bet_panelLayout.setVerticalGroup(
@@ -167,7 +195,9 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(increase_button)
                 .addGap(18, 18, 18)
-                .addComponent(bet_label)
+                .addGroup(bet_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bet_label)
+                    .addComponent(dollar_label))
                 .addGap(18, 18, 18)
                 .addComponent(decrease_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -232,6 +262,36 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hit_buttonActionPerformed
 
+    private void increase_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increase_buttonActionPerformed
+            // TODO add your handling code here:
+            Integer num = parseInt(bet_label.getText());
+            num += 10;
+            bet_label.setText(num.toString());
+    }//GEN-LAST:event_increase_buttonActionPerformed
+
+    private void decrease_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrease_buttonActionPerformed
+        // TODO add your handling code here:
+        Integer num = parseInt(bet_label.getText());
+        if(num != 0){
+            num -= 10;
+            bet_label.setText(num.toString());
+        }
+    }//GEN-LAST:event_decrease_buttonActionPerformed
+
+    private void bet_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bet_buttonActionPerformed
+        // TODO add your handling code here:
+        Dealer dealer = gameEngine.getDealer();
+        Player player = gameEngine.getPlayer();
+        playerBet = parseInt(bet_label.getText());
+        bet_label.setText("0");
+        bet_panel.setVisible(false);
+        player.bet();
+        dealer.deal_cards(gameEngine.getDeck(), gameEngine.getPlayer());
+        d_card_placement_label1.setIcon(CardIcons.getIcon(dealer.cards.getFirst()));
+        d_card_placement_label2.setIcon(CardIcons.getIcon(dealer.cards.get(1)));
+        player.set_turn();
+    }//GEN-LAST:event_bet_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +330,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JPanel dealers_cards_panel;
     private javax.swing.JLabel deck_label;
     private javax.swing.JButton decrease_button;
+    private javax.swing.JLabel dollar_label;
     private javax.swing.JButton hit_button;
     private javax.swing.JButton increase_button;
     private javax.swing.JLabel p_card_placement_label1;
