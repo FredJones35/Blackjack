@@ -260,6 +260,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void hit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hit_buttonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_hit_buttonActionPerformed
 
     private void increase_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increase_buttonActionPerformed
@@ -289,6 +290,10 @@ public class GameFrame extends javax.swing.JFrame {
         dealer.deal_cards(gameEngine.getDeck(), gameEngine.getPlayer());
         d_card_placement_label1.setIcon(CardIcons.getIcon(dealer.cards.getFirst()));
         d_card_placement_label2.setIcon(CardIcons.getIcon(dealer.cards.get(1)));
+        p_card_placement_label1.setIcon(CardIcons.getIcon(player.cards.getFirst()));
+        p_card_placement_label2.setIcon(CardIcons.getIcon(player.cards.get(1)));
+        dealer_points_label.setText("Dealer :"+ValueCalculator.calculate(dealer.cards).toString());
+        player_points_label.setText("You :"+ValueCalculator.calculate(player.cards).toString());
         player.set_turn();
     }//GEN-LAST:event_bet_buttonActionPerformed
 

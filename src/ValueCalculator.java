@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class ValueCalculator {
-    public static int calculate(ArrayList<String> cards) {
+    public static Integer calculate(ArrayList<String> cards) {
         int sum = 0;
         for (String card : cards) {
             char card_val = card.charAt(0);
