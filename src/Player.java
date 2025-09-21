@@ -12,6 +12,9 @@ public class Player implements GamblerActions {
         this.money = 100;
         cards = new ArrayList<>();
     }
+    public void setBet(int amount){
+        this.bet = amount;
+    }
 
     public int bet() {
         money -= bet;

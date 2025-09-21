@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Game {
+public class GameEngine {
     Player player;
     Dealer dealer;
     int round_count;
@@ -11,7 +11,7 @@ public class Game {
             "2-H", "3-H", "4-H", "5-H", "6-H", "7-H", "8-H", "9-H", "10-H", "J-H", "Q-H", "K-H", "A-H",
             "2-S", "3-S", "4-S", "5-S", "6-S", "7-S", "8-S", "9-S", "10-S", "J-S", "Q-S", "K-S", "A-S"
     ));
-    Game(){
+    GameEngine(){
         player = new Player();
         dealer = new Dealer();
         round_count = 0;

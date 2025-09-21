@@ -48,6 +48,7 @@ public class GameFrame extends javax.swing.JFrame {
         increase_button = new javax.swing.JButton();
         decrease_button = new javax.swing.JButton();
         bet_label = new javax.swing.JLabel();
+        bet_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Blackjack");
@@ -145,6 +146,8 @@ public class GameFrame extends javax.swing.JFrame {
         bet_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bet_label.setText("Bet : 0");
 
+        bet_button.setText("Bet");
+
         javax.swing.GroupLayout bet_panelLayout = new javax.swing.GroupLayout(bet_panel);
         bet_panel.setLayout(bet_panelLayout);
         bet_panelLayout.setHorizontalGroup(
@@ -154,7 +157,8 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(bet_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(increase_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(decrease_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bet_label, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                    .addComponent(bet_label, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(bet_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         bet_panelLayout.setVerticalGroup(
@@ -162,11 +166,13 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(bet_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(increase_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(bet_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(decrease_button)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bet_button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,12 +216,12 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(deck_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bet_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttons_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(players_cards_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player_points_label)))
+                        .addComponent(player_points_label))
+                    .addComponent(bet_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -252,6 +258,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bet_button;
     private javax.swing.JLabel bet_label;
     private javax.swing.JPanel bet_panel;
     private javax.swing.JPanel buttons_panel;
